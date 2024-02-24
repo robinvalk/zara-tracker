@@ -3,7 +3,18 @@ services:
     image: zara_prices
     build: .
     command: ["crawl", "prices"]
-    env_file: .env.prices.pl
+    environment:
+      - TG_TOKEN="${TG_TOKEN}"
+      - TG_CHAT_ID="${PL_TG_CHAT_ID}"
+      - TG_THREAD_W=2
+      - TG_THREAD_M=4
+      - TG_THREAD_K=8
+      - TG_THREAD_Z=11
+      - TG_THREAD_B=10
+      - TG_ERROR_CHAT_ID="${TG_ERROR_CHAT_ID}"
+      - DATABASE_FILEPATH=/opt/scrapy/data/zara.db
+      - COUNTRY_CODE=pl
+      - LANGUAGE_CODE=pl
     volumes:
       - ./data/pl/zara.db:/opt/scrapy/data/zara.db
     user: "${UID}:${GID}"
@@ -12,7 +23,18 @@ services:
     image: zara_prices
     build: .
     command: ["crawl", "prices"]
-    env_file: .env.prices.nl
+    environment:
+      - TG_TOKEN="${TG_TOKEN}"
+      - TG_CHAT_ID="${NL_TG_CHAT_ID}"
+      - TG_THREAD_W=2
+      - TG_THREAD_M=6
+      - TG_THREAD_K=5
+      - TG_THREAD_Z=7
+      - TG_THREAD_B=4
+      - TG_ERROR_CHAT_ID="${TG_ERROR_CHAT_ID}"
+      - DATABASE_FILEPATH=/opt/scrapy/data/zara.db
+      - COUNTRY_CODE=nl
+      - LANGUAGE_CODE=nl
     volumes:
       - ./data/nl/zara.db:/opt/scrapy/data/zara.db
     user: "${UID}:${GID}"
