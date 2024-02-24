@@ -1,0 +1,18 @@
+services:
+  zara_prices_pl:
+    image: zara_prices
+    build: .
+    command: ["crawl", "prices"]
+    env_file: .env.prices.pl
+    volumes:
+      - ./data/pl/zara.db:/opt/scrapy/data/zara.db
+    user: "${UID}:${GID}"
+
+  zara_prices_nl:
+    image: zara_prices
+    build: .
+    command: ["crawl", "prices"]
+    env_file: .env.prices.nl
+    volumes:
+      - ./data/nl/zara.db:/opt/scrapy/data/zara.db
+    user: "${UID}:${GID}"
